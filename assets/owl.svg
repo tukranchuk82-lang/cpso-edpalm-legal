@@ -1,0 +1,32 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="owlBody" x1="40" y1="40" x2="160" y2="180" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C79B6A"/>
+      <stop offset="1" stop-color="#8B5E33"/>
+    </linearGradient>
+  </defs>
+  <!-- Крылья -->
+  <path d="M58 100 C20 110 14 150 40 160 C44 130 56 118 70 116 Z" fill="url(#owlBody)"/>
+  <path d="M142 100 C180 110 186 150 160 160 C156 130 144 118 130 116 Z" fill="url(#owlBody)"/>
+  <!-- Тело -->
+  <ellipse cx="100" cy="118" rx="52" ry="58" fill="url(#owlBody)"/>
+  <ellipse cx="100" cy="128" rx="34" ry="40" fill="#EAD2A8"/>
+  <!-- Ушки -->
+  <path d="M62 64 C58 40 80 46 84 70 Z" fill="url(#owlBody)"/>
+  <path d="M138 64 C142 40 120 46 116 70 Z" fill="url(#owlBody)"/>
+  <!-- Лицевой диск -->
+  <ellipse cx="100" cy="86" rx="46" ry="40" fill="#D9BC8E"/>
+  <!-- Глаза -->
+  <circle cx="80" cy="84" r="20" fill="#F4ECDA"/>
+  <circle cx="120" cy="84" r="20" fill="#F4ECDA"/>
+  <circle cx="80" cy="85" r="12" fill="#8FB23A"/>
+  <circle cx="120" cy="85" r="12" fill="#8FB23A"/>
+  <circle cx="80" cy="85" r="6" fill="#1c1c1c"/>
+  <circle cx="120" cy="85" r="6" fill="#1c1c1c"/>
+  <circle cx="83" cy="82" r="2.4" fill="#fff"/>
+  <circle cx="123" cy="82" r="2.4" fill="#fff"/>
+  <!-- Клюв -->
+  <path d="M100 92 l9 12 -18 0 Z" fill="#E0A23C"/>
+  <!-- Лапки -->
+  <path d="M88 172 l0 12 M84 184 h8 M112 172 l0 12 M108 184 h8" stroke="#C98A3A" stroke-width="4" stroke-linecap="round"/>
+</svg>

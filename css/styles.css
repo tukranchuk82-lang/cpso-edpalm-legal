@@ -1,0 +1,674 @@
+/* =============================================================================
+ *  ЦПСО EdPalm — Юридическая поддержка «Базовый без ГИА»
+ *  styles.css — концепция «Зелёный диплом»:
+ *  академический зелёный + золото + пергамент,
+ *  атрибутика выпускника (конфедератка, кисточка, венок) и
+ *  юриспруденции (весы, §), заголовки с засечками.
+ * ========================================================================== */
+
+:root {
+  /* Зелёные */
+  --green-deep: #0E5A3C;
+  --green: #1B7A4F;
+  --green-bright: #1F9D55;
+  --green-700: #15633F;
+  /* Золото */
+  --gold: #C9A24B;
+  --gold-light: #E8CC7A;
+  --gold-soft: #F2DD9E;
+  /* Пергамент / светлые поверхности */
+  --parchment: #F8F3E7;
+  --parchment-2: #FDFBF4;
+  --line: #E7DCC2;
+  /* Текст */
+  --ink: #21302A;
+  --ink-dim: #5d6c63;
+  --on-dark: #F3F7F2;
+  --on-dark-dim: rgba(243, 247, 242, 0.74);
+
+  --radius: 20px;
+  --tab-h: 64px;
+  --bar-h: 58px;
+
+  --serif: Georgia, "PT Serif", "Times New Roman", "Noto Serif", serif;
+  --sans: "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+  font-family: var(--sans);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+/* Атрибут hidden должен прятать элемент, даже если у него задан display */
+[hidden] { display: none !important; }
+
+body {
+  min-height: 100vh;
+  display: grid; place-items: center;
+  background:
+    radial-gradient(900px 600px at 15% 0%, #1c8052 0%, transparent 55%),
+    radial-gradient(900px 800px at 100% 100%, #06351f 0%, transparent 55%),
+    linear-gradient(160deg, #0a3b25, #0f5034 60%, #0a3b25);
+  color: var(--ink);
+  overflow: hidden;
+}
+
+/* ----------------------------- Демо-бейдж ------------------------------ */
+.demo-badge {
+  flex: 0 0 auto; z-index: 50;
+  text-align: center;
+  font-size: 10.5px; font-weight: 700; letter-spacing: .6px;
+  color: var(--gold-soft);
+  background: rgba(7, 40, 26, .96);
+  border-bottom: 1px solid rgba(201,162,75,.45);
+  padding: 4px 10px;
+}
+
+/* ----------------------- Приложение (без рамки) ------------------------ */
+.screen {
+  position: relative;
+  width: 100%; max-width: 480px; height: 100vh;
+  overflow: hidden; display: flex; flex-direction: column;
+  box-shadow: 0 0 60px rgba(5, 26, 16, 0.5);
+  background-color: var(--green-deep);
+  background-image:
+    /* тонкий золотой «гильош» по диагонали */
+    repeating-linear-gradient(45deg, rgba(201,162,75,.05) 0 2px, transparent 2px 22px),
+    radial-gradient(120% 80% at 50% -10%, #1f8f5a 0%, transparent 55%),
+    linear-gradient(180deg, #166B45 0%, #0E5A3C 45%, #0a4530 100%);
+}
+
+@media (max-width: 480px) {
+  body { overflow: auto; }
+}
+
+/* ----------------------------- Шапка ----------------------------------- */
+.appbar {
+  position: relative; z-index: 20; flex: 0 0 auto;
+  min-height: var(--bar-h);
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 14px 10px;
+  color: #fff;
+  border-bottom: 1px solid rgba(201,162,75,.28);
+  background: linear-gradient(180deg, rgba(9,52,33,.5), transparent);
+}
+.appbar__back {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: rgba(0,0,0,.22); color: var(--gold-soft);
+  border: 1px solid rgba(201,162,75,.4);
+  font-size: 24px; line-height: 1; cursor: pointer;
+  display: grid; place-items: center;
+  transition: background .15s, transform .1s;
+}
+.appbar__back:hover { background: rgba(0,0,0,.34); }
+.appbar__back:active { transform: scale(.92); }
+.appbar__emblem { width: 34px; height: 34px; flex: 0 0 34px; }
+.appbar__title {
+  font-family: var(--serif);
+  font-size: 17px; font-weight: 700; letter-spacing: .2px;
+  color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,.35);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.appbar__spacer { flex: 1; }
+
+/* ----------------------------- Контент --------------------------------- */
+.content {
+  position: relative; z-index: 10; flex: 1 1 auto;
+  overflow-y: auto; overflow-x: hidden;
+  padding: 8px 16px 20px;
+  scrollbar-width: thin;
+}
+.content::-webkit-scrollbar { width: 5px; }
+.content::-webkit-scrollbar-thumb { background: rgba(201,162,75,.45); border-radius: 4px; }
+
+.fade-in { animation: fade .3s ease both; }
+@keyframes fade { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+/* ----------------------------- Нижнее меню ----------------------------- */
+.tabbar {
+  flex: 0 0 auto; height: var(--tab-h); display: flex;
+  background: var(--parchment-2);
+  border-top: 2px solid var(--gold);
+  box-shadow: 0 -8px 20px rgba(5,26,16,.18);
+}
+.tabbar__btn {
+  flex: 1; border: none; background: none; cursor: pointer;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+  color: #93a399; font-size: 10.5px; font-weight: 700;
+  position: relative; transition: color .15s;
+}
+.tabbar__icon { position: relative; display: grid; place-items: center; transition: transform .15s; }
+.tabbar__icon svg { width: 24px; height: 24px; stroke: currentColor; fill: none; }
+.tabbar__btn.active { color: var(--green-deep); }
+.tabbar__btn.active .tabbar__icon { transform: translateY(-2px); }
+.tabbar__btn.active::before {
+  content: ""; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 30px; height: 3px; border-radius: 0 0 3px 3px; background: var(--gold);
+}
+/* Красный кружок непрочитанного */
+.nav-dot {
+  position: absolute; top: -3px; right: -6px;
+  min-width: 16px; height: 16px; padding: 0 4px;
+  background: #E23B3B; border: 2px solid var(--parchment-2);
+  border-radius: 999px;
+  color: #fff; font-size: 9px; font-weight: 800; line-height: 12px;
+  display: grid; place-items: center;
+  box-shadow: 0 2px 6px rgba(226,59,59,.5);
+}
+.nav-dot[hidden] { display: none; }
+
+/* =============================================================================
+ *  Герой / персонаж / бренд
+ * ========================================================================== */
+.hero { position: relative; text-align: center; color: #fff; padding: 4px 4px 8px; }
+.hero__chars { display: flex; align-items: flex-end; justify-content: center; margin: 2px auto 6px; min-height: 150px; }
+.hero__chars img { filter: drop-shadow(0 12px 18px rgba(0,0,0,.4)); }
+.hero__chars .eureka { height: 168px; }
+.hero__chars .owl { height: 120px; }
+
+/* Лента «Выпуск 2026/27» */
+.grad-badge {
+  display: inline-flex; align-items: center; gap: 7px;
+  font-family: var(--serif); font-weight: 700; font-size: 12.5px;
+  color: var(--green-deep);
+  background: linear-gradient(180deg, var(--gold-soft), var(--gold));
+  border: 1px solid rgba(255,255,255,.4);
+  padding: 6px 14px; border-radius: 999px;
+  box-shadow: 0 6px 14px rgba(0,0,0,.22);
+}
+
+/* Бренд */
+.brandmark { display: flex; align-items: center; justify-content: center; gap: 11px; margin: 8px 0 2px; }
+.brandmark img { width: 46px; height: 46px; }
+.brandmark .bm-text { text-align: left; }
+.brandmark .bm-name { font-family: var(--serif); color: #fff; font-weight: 700; font-size: 19px; letter-spacing: .3px; }
+.brandmark .bm-sub { color: var(--gold-soft); font-size: 11px; letter-spacing: .3px; }
+
+/* Речь персонажа */
+.bubble {
+  position: relative; background: var(--parchment-2); color: var(--ink);
+  border-radius: 16px; padding: 12px 15px;
+  font-size: 13px; line-height: 1.45;
+  border: 1px solid var(--line);
+  box-shadow: 0 10px 22px rgba(5,26,16,.3);
+  margin: 0 auto 8px; max-width: 320px;
+}
+.bubble::after {
+  content: ""; position: absolute; bottom: -8px; left: 46px;
+  border: 8px solid transparent; border-top-color: var(--parchment-2); border-bottom: 0;
+}
+.bubble b { color: var(--green); }
+
+/* Комикс: Эврика слева, реплика справа с хвостиком к ней */
+.comic { display: flex; align-items: flex-end; justify-content: center; gap: 4px; padding-top: 4px; }
+.comic__char { height: 150px; flex: 0 0 auto; filter: drop-shadow(0 12px 18px rgba(0,0,0,.4)); }
+.comic .bubble { margin: 0 0 26px; max-width: 215px; }
+.bubble--left-tail::after {
+  content: ""; position: absolute; left: -9px; bottom: 22px; top: auto;
+  border: 9px solid transparent; border-right-color: var(--parchment-2); border-left: 0;
+}
+
+/* Заголовок-секция со знаком § */
+.section-title {
+  font-family: var(--serif);
+  font-size: 14px; font-weight: 700; letter-spacing: .3px;
+  color: #fff; margin: 16px 4px 10px;
+  display: flex; align-items: center; gap: 8px;
+}
+.section-title::before {
+  content: "§"; color: var(--gold-soft); font-size: 18px; font-weight: 700;
+}
+
+/* =============================================================================
+ *  Кнопки
+ * ========================================================================== */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; padding: 14px 18px; border: none; border-radius: 14px;
+  font-size: 15px; font-weight: 700; font-family: var(--sans); cursor: pointer;
+  transition: transform .1s, box-shadow .15s, opacity .15s, filter .15s;
+}
+.btn--primary {
+  background: linear-gradient(135deg, var(--green-bright), var(--green-700));
+  color: #fff; box-shadow: 0 10px 22px rgba(21,99,63,.4);
+  border: 1px solid rgba(255,255,255,.12);
+}
+.btn--primary:active { transform: translateY(1px) scale(.99); }
+.btn--primary:disabled { opacity: .5; cursor: not-allowed; box-shadow: none; }
+.btn--gold {
+  background: linear-gradient(135deg, var(--gold-soft), var(--gold));
+  color: var(--green-deep); box-shadow: 0 8px 18px rgba(0,0,0,.22);
+}
+.btn--gold:active { transform: translateY(1px) scale(.99); }
+.btn--gold .star { color: var(--green-deep); }
+.btn--dark {
+  background: linear-gradient(135deg, var(--green-700), var(--green-deep));
+  color: #fff; box-shadow: 0 10px 22px rgba(8,48,30,.4);
+  border: 1px solid rgba(201,162,75,.35);
+}
+.btn--dark:active { transform: translateY(1px) scale(.99); }
+.btn--dark-outline {
+  background: transparent; color: var(--green-deep);
+  border: 2px solid var(--green-deep);
+}
+.btn--dark-outline:active { transform: translateY(1px) scale(.99); }
+.btn--ghost { background: rgba(255,255,255,.1); color: #fff; border: 1px solid rgba(201,162,75,.4); }
+.btn--link { background: none; color: var(--gold-soft); width: auto; padding: 8px; text-decoration: underline; font-weight: 700; }
+.btn-row { margin-top: 6px; }
+.btn .spinner { width: 16px; height: 16px; border: 2.5px solid rgba(255,255,255,.4); border-top-color: #fff; border-radius: 50%; animation: spin .7s linear infinite; }
+.btn--gold .spinner { border-color: rgba(14,90,60,.35); border-top-color: var(--green-deep); }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* Кнопка установки приложения (PWA) */
+.install-btn { display: none; margin-bottom: 12px; }
+body.can-install .install-btn,
+body.ios-install .install-btn { display: inline-flex; }
+
+/* =============================================================================
+ *  Пергаментная карточка-«документ» — базовая светлая поверхность
+ * ========================================================================== */
+.sheet {
+  background: var(--parchment);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 14px 30px rgba(5,26,16,.32);
+  position: relative;
+}
+
+/* =============================================================================
+ *  Авторизация
+ * ========================================================================== */
+.auth { padding: 2px 2px 0; }
+.auth__card {
+  background: var(--parchment);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px 18px; margin-top: 6px;
+  box-shadow: 0 16px 34px rgba(5,26,16,.36);
+  color: var(--ink);
+}
+.auth__card h2 { font-family: var(--serif); font-size: 19px; color: var(--green-deep); margin-bottom: 6px; }
+.auth__card p.hint { font-size: 12.5px; color: var(--ink-dim); line-height: 1.45; margin-bottom: 14px; }
+
+.field { margin-bottom: 14px; }
+.field label { display: block; font-size: 12px; font-weight: 700; color: var(--green-700); margin-bottom: 6px; }
+.field input {
+  width: 100%; padding: 13px 14px; font-size: 16px;
+  border: 1.5px solid var(--line); border-radius: 12px; outline: none;
+  background: #fff; color: var(--ink); font-family: inherit;
+  transition: border-color .15s, box-shadow .15s;
+}
+.field input:focus { border-color: var(--green-bright); box-shadow: 0 0 0 3px rgba(31,157,85,.18); }
+.field-hint { font-size: 11.5px; color: var(--ink-dim); margin-top: 6px; line-height: 1.4; }
+.field-hint b { color: var(--green-700); }
+.field .err { color: #b3402f; font-size: 12px; margin-top: 6px; display: none; }
+.field.invalid .err { display: block; }
+.field.invalid input { border-color: #d9745f; }
+
+/* Список стран */
+.select {
+  width: 100%; padding: 13px 14px; font-size: 15px;
+  border: 1.5px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink); font-family: inherit;
+  outline: none; cursor: pointer; appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%231B7A4F' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px;
+}
+.select:focus { border-color: var(--green-bright); box-shadow: 0 0 0 3px rgba(31,157,85,.18); }
+
+/* Поле телефона с кодом страны */
+.phone-input { display: flex; align-items: stretch; gap: 8px; }
+.phone-input .dial {
+  flex: 0 0 auto; display: grid; place-items: center;
+  min-width: 60px; padding: 0 12px;
+  background: var(--green-deep); border: 1.5px solid var(--green-700);
+  border-radius: 12px; color: var(--gold-soft); font-size: 16px; font-weight: 800;
+}
+.phone-input input { flex: 1 1 auto; }
+
+/* SMS-код */
+.otp { display: flex; gap: 7px; justify-content: space-between; }
+.otp input {
+  width: 100%; min-width: 0; height: 58px;
+  text-align: center; font-size: 24px; font-weight: 800; font-family: var(--serif);
+  border: 1.5px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--green-deep);
+}
+.otp input:focus { border-color: var(--green-bright); box-shadow: 0 0 0 3px rgba(31,157,85,.18); outline: none; }
+
+/* Демо-подсказка */
+.demo-hint {
+  margin-top: 12px; font-size: 11.5px; color: var(--ink-dim);
+  background: #efe7d3; border: 1px dashed var(--gold);
+  border-radius: 10px; padding: 9px 11px; line-height: 1.55;
+}
+.demo-hint b { color: var(--green-700); }
+
+/* =============================================================================
+ *  Состояния
+ * ========================================================================== */
+.state { text-align: center; padding: 22px 16px; }
+.state__emoji { font-size: 50px; }
+.state__title { font-family: var(--serif); font-size: 20px; font-weight: 700; color: var(--green-deep); margin: 12px 0 8px; }
+.state__text { font-size: 13.5px; color: var(--ink-dim); line-height: 1.55; margin-bottom: 18px; }
+
+/* =============================================================================
+ *  Карточки тем (как разделы свода / реестра)
+ * ========================================================================== */
+.topic-card {
+  display: flex; align-items: center; gap: 14px;
+  width: 100%; text-align: left;
+  background: var(--parchment);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--gold);
+  border-radius: 14px; padding: 15px 16px; margin-bottom: 11px;
+  cursor: pointer; color: var(--ink);
+  box-shadow: 0 8px 18px rgba(5,26,16,.22);
+  transition: transform .12s, box-shadow .15s, border-color .15s;
+}
+.topic-card:hover { transform: translateY(-2px); box-shadow: 0 14px 26px rgba(5,26,16,.3); }
+.topic-card:active { transform: scale(.99); }
+.topic-card__icon {
+  flex: 0 0 52px; width: 52px; height: 52px;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, #e9f2ea, #d6e8db);
+  border: 1px solid var(--line); border-radius: 50%;
+  color: var(--green-deep);
+}
+.topic-card__icon svg { width: 27px; height: 27px; }
+.topic-card__body { flex: 1; }
+.topic-card__title { font-family: var(--serif); font-size: 15px; font-weight: 700; color: var(--green-deep); line-height: 1.3; }
+.topic-card__sub { font-size: 11.5px; color: var(--ink-dim); margin-top: 3px; }
+.topic-card__chev { color: var(--gold); font-size: 24px; font-weight: 700; }
+
+/* Зелёная карточка (основные темы) */
+.topic-card--green {
+  background: linear-gradient(135deg, var(--green-bright), var(--green-deep));
+  border: 1px solid rgba(201,162,75,.45);
+  border-left: 4px solid var(--gold);
+}
+.topic-card--green .topic-card__title { color: #fff; }
+.topic-card--green .topic-card__sub { color: var(--gold-soft); }
+.topic-card--green .topic-card__icon {
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(201,162,75,.55);
+  color: var(--gold-soft);
+}
+.topic-card--green .topic-card__chev { color: var(--gold-soft); }
+
+/* Золотая карточка («Задать вопрос юристу») */
+.topic-card--gold {
+  background: linear-gradient(135deg, #FBF1CF, var(--gold-soft));
+  border: 1px solid #E4C77A;
+  border-left: 4px solid var(--green-deep);
+}
+.topic-card--gold .topic-card__title { color: var(--green-deep); }
+.topic-card--gold .topic-card__sub { color: var(--green-700); }
+.topic-card--gold .topic-card__icon {
+  background: #fff;
+  border: 1px solid #E4C77A;
+  color: var(--green-deep);
+}
+.topic-card--gold .topic-card__chev { color: var(--green-700); }
+
+/* =============================================================================
+ *  Список вопросов
+ * ========================================================================== */
+.q-item {
+  display: flex; align-items: center; gap: 12px;
+  width: 100%; text-align: left;
+  background: var(--parchment);
+  border: 1px solid var(--line);
+  border-radius: 12px; padding: 14px; margin-bottom: 9px;
+  cursor: pointer; color: var(--ink);
+  box-shadow: 0 6px 14px rgba(5,26,16,.18);
+  transition: transform .12s, border-color .15s, box-shadow .15s;
+}
+.q-item:hover { border-color: var(--gold); transform: translateY(-1px); box-shadow: 0 10px 20px rgba(5,26,16,.26); }
+.q-item__num {
+  flex: 0 0 28px; width: 28px; height: 28px;
+  display: grid; place-items: center; font-family: var(--serif);
+  background: linear-gradient(135deg, var(--gold-soft), var(--gold)); color: var(--green-deep);
+  border-radius: 8px; font-size: 13px; font-weight: 700;
+}
+.q-item__text { flex: 1; font-size: 13.5px; line-height: 1.35; color: var(--ink); }
+.q-item__chev { color: var(--gold); font-size: 20px; }
+
+/* =============================================================================
+ *  Ответ юриста — лист-«диплом»
+ * ========================================================================== */
+.answer {
+  background: var(--parchment-2);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 8px; margin-top: 6px;
+  box-shadow: 0 14px 30px rgba(5,26,16,.34);
+}
+.answer__inner {
+  border: 1.5px solid var(--gold);
+  border-radius: 14px;
+  padding: 18px 16px;
+  background:
+    radial-gradient(120% 60% at 50% 0%, rgba(201,162,75,.07), transparent 60%);
+}
+.answer__seal {
+  width: 44px; height: 44px; margin: 0 auto 8px; display: block;
+}
+.answer__q { font-family: var(--serif); font-size: 16px; font-weight: 700; color: var(--green-deep); line-height: 1.35; margin-bottom: 12px; text-align: center; }
+.answer__divider { height: 2px; width: 70px; background: var(--gold); border-radius: 2px; margin: 0 auto 14px; }
+.answer__text { font-size: 14px; line-height: 1.65; color: var(--ink); }
+.answer__note {
+  margin-top: 14px; font-size: 11.5px; color: var(--ink-dim); line-height: 1.5;
+  border-top: 1px dashed var(--line); padding-top: 10px;
+}
+.answer__sign { display: flex; align-items: center; gap: 10px; margin-top: 12px; font-size: 12px; color: var(--green-700); font-weight: 600; }
+.answer__sign img { width: 38px; height: 38px; border-radius: 50%; background: #eef4ef; padding: 3px; border: 1px solid var(--line); }
+
+.followup {
+  margin-top: 14px;
+  background: linear-gradient(135deg, var(--green-bright), var(--green-deep));
+  border: 1px solid rgba(201,162,75,.4);
+  border-radius: 16px; padding: 14px 15px; color: #fff;
+}
+.followup p { font-size: 12.5px; line-height: 1.4; margin-bottom: 10px; color: var(--gold-soft); }
+
+/* =============================================================================
+ *  Форма вопроса юристу
+ * ========================================================================== */
+.ask-card {
+  background: var(--parchment);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 18px 16px; margin-top: 6px;
+  box-shadow: 0 16px 34px rgba(5,26,16,.36);
+}
+.ask-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.ask-head img { width: 54px; height: 54px; flex: 0 0 54px; filter: drop-shadow(0 6px 10px rgba(0,0,0,.25)); }
+.ask-card h2 { font-family: var(--serif); font-size: 18px; color: var(--green-deep); margin-bottom: 4px; }
+.ask-card .lead { font-size: 12.5px; color: var(--ink-dim); line-height: 1.45; }
+.ask-card textarea {
+  width: 100%; min-height: 130px; resize: vertical;
+  padding: 13px 14px; font-size: 14px; line-height: 1.5;
+  border: 1.5px solid var(--line); border-radius: 12px;
+  background: #fff; color: var(--ink); font-family: inherit; outline: none;
+  transition: border-color .15s, box-shadow .15s;
+}
+.ask-card textarea:focus { border-color: var(--green-bright); box-shadow: 0 0 0 3px rgba(31,157,85,.18); }
+.char-count { text-align: right; font-size: 11px; color: var(--ink-dim); margin-top: 4px; }
+
+.schedule-note {
+  display: flex; gap: 10px; align-items: flex-start;
+  font-size: 12px; color: var(--ink-dim); line-height: 1.45;
+  background: #efe7d3; border: 1px solid var(--line);
+  border-radius: 10px; padding: 11px 12px; margin: 12px 0;
+}
+.schedule-note .dot { width: 9px; height: 9px; border-radius: 50%; margin-top: 4px; flex: 0 0 9px; }
+.schedule-note .dot.on { background: var(--green-bright); box-shadow: 0 0 0 4px rgba(31,157,85,.18); }
+.schedule-note .dot.off { background: var(--gold); box-shadow: 0 0 0 4px rgba(201,162,75,.22); }
+
+/* =============================================================================
+ *  Успех отправки (с выпускным акцентом)
+ * ========================================================================== */
+.success__check {
+  width: 84px; height: 84px; margin: 6px auto 0; border-radius: 50%;
+  background: linear-gradient(135deg, var(--green-bright), var(--green-deep));
+  border: 3px solid var(--gold);
+  display: grid; place-items: center;
+  box-shadow: 0 12px 26px rgba(14,90,60,.45);
+  animation: pop .4s ease both;
+}
+.success__check svg { width: 40px; height: 40px; }
+@keyframes pop { 0% { transform: scale(.4); opacity: 0; } 60% { transform: scale(1.08); } 100% { transform: scale(1); opacity: 1; } }
+
+/* ----------------------------- Toast ----------------------------------- */
+.toast {
+  position: fixed; left: 50%; bottom: 36px; transform: translateX(-50%) translateY(20px);
+  z-index: 100;
+  background: var(--green-deep); color: var(--gold-soft);
+  font-size: 13px; font-weight: 600;
+  padding: 12px 18px; border-radius: 12px;
+  box-shadow: 0 14px 30px rgba(0,0,0,.4);
+  border: 1px solid rgba(201,162,75,.5);
+  opacity: 0; pointer-events: none;
+  transition: opacity .2s, transform .2s;
+  max-width: 330px; text-align: center;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ----------------------- Модалка установки (iOS) ----------------------- */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(5,26,16,.6); backdrop-filter: blur(3px);
+  display: grid; place-items: end center;
+  opacity: 0; pointer-events: none; transition: opacity .2s;
+}
+.modal-overlay.show { opacity: 1; pointer-events: auto; }
+.modal {
+  width: 100%; max-width: 480px;
+  background: var(--parchment-2);
+  border-radius: 20px 20px 0 0;
+  border-top: 3px solid var(--gold);
+  padding: 20px 18px 26px;
+  transform: translateY(20px); transition: transform .25s;
+}
+.modal-overlay.show .modal { transform: none; }
+.modal h3 { font-family: var(--serif); color: var(--green-deep); font-size: 18px; margin-bottom: 10px; }
+.modal ol { margin: 0 0 14px 18px; font-size: 13.5px; line-height: 1.7; color: var(--ink); }
+.modal .share-ico { display: inline-grid; place-items: center; width: 20px; height: 20px; vertical-align: -4px; color: var(--green-bright); }
+
+/* =============================================================================
+ *  Кнопка «Профиль» (в шапке, полупрозрачная) + меню профилей
+ * ========================================================================== */
+.appbar__profile {
+  flex: 0 0 auto; width: 38px; height: 38px;
+  border-radius: 50%; cursor: pointer;
+  background: rgba(255,255,255,.12);
+  border: 1px solid rgba(255,255,255,.22);
+  color: rgba(255,255,255,.85);
+  display: grid; place-items: center;
+  transition: background .15s, transform .1s;
+}
+.appbar__profile:hover { background: rgba(255,255,255,.22); }
+.appbar__profile:active { transform: scale(.92); }
+.appbar__profile svg { width: 22px; height: 22px; stroke: currentColor; fill: none; }
+
+.profile-pop {
+  position: absolute; z-index: 60;
+  top: 86px; right: 12px; width: 250px;
+  background: var(--parchment-2);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: 0 18px 40px rgba(5,26,16,.45);
+  padding: 12px;
+  animation: ppIn .16s ease both;
+}
+.profile-pop[hidden] { display: none; }
+@keyframes ppIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+
+.pp__cur { display: flex; align-items: center; gap: 11px; padding: 4px 4px 12px; border-bottom: 1px solid var(--line); }
+.pp__avatar {
+  flex: 0 0 42px; width: 42px; height: 42px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--green-bright), var(--green-deep));
+  color: #fff; font-weight: 800; font-size: 15px; font-family: var(--serif);
+  display: grid; place-items: center;
+  border: 2px solid var(--gold);
+}
+.pp__avatar.sm { flex-basis: 34px; width: 34px; height: 34px; font-size: 13px; border-width: 1.5px; }
+.pp__name { font-weight: 700; font-size: 13.5px; color: var(--green-deep); line-height: 1.25; }
+.pp__name.sm { font-size: 13px; }
+.pp__phone { font-size: 11.5px; color: var(--ink-dim); margin-top: 1px; }
+.pp__label { font-size: 10.5px; font-weight: 700; letter-spacing: .4px; text-transform: uppercase; color: var(--ink-dim); margin: 10px 4px 6px; }
+.pp__item {
+  display: flex; align-items: center; gap: 10px; width: 100%; text-align: left;
+  background: none; border: none; cursor: pointer;
+  padding: 7px 6px; border-radius: 10px; transition: background .12s;
+}
+.pp__item:hover { background: #f0ead9; }
+.pp__add {
+  display: flex; align-items: center; gap: 10px; width: 100%;
+  margin-top: 8px; padding: 10px 8px;
+  background: #f0ead9; border: 1px dashed var(--gold); border-radius: 12px;
+  color: var(--green-deep); font-weight: 700; font-size: 13px; cursor: pointer;
+  transition: background .12s;
+}
+.pp__add:hover { background: #e9e0c8; }
+.pp__plus {
+  flex: 0 0 26px; width: 26px; height: 26px; border-radius: 50%;
+  background: var(--green-deep); color: var(--gold-soft);
+  display: grid; place-items: center; font-size: 18px; font-weight: 700;
+}
+.pp__logout {
+  display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;
+  margin-top: 8px; padding: 10px 8px;
+  background: none; border: none; border-top: 1px solid var(--line);
+  color: #b3402f; font-weight: 700; font-size: 13px; cursor: pointer;
+  border-radius: 0 0 10px 10px; transition: background .12s;
+}
+.pp__logout:hover { background: #f7e9e6; }
+
+/* Крестик закрытия модалки */
+.modal__close {
+  position: absolute; top: 12px; right: 12px;
+  width: 34px; height: 34px; border-radius: 50%;
+  background: #efe7d3; border: 1px solid var(--line);
+  color: var(--green-deep); font-size: 22px; line-height: 1; cursor: pointer;
+  display: grid; place-items: center;
+  transition: background .15s, transform .1s;
+}
+.modal__close:hover { background: #e6dcc2; }
+.modal__close:active { transform: scale(.92); }
+.modal--auth { border-radius: 20px; padding: 22px 18px; position: relative; max-width: 420px; }
+.modal-overlay--center { place-items: center; padding: 18px; }
+.modal-overlay--center .modal--auth { transform: scale(.96); }
+.modal-overlay--center.show .modal--auth { transform: none; }
+.modal--auth h2 { font-family: var(--serif); font-size: 19px; color: var(--green-deep); margin-bottom: 6px; }
+.modal--auth p.hint { font-size: 12.5px; color: var(--ink-dim); line-height: 1.45; margin-bottom: 14px; }
+
+/* =============================================================================
+ *  Личный кабинет — обращения и ответы
+ * ========================================================================== */
+.cabinet-head { color: #fff; padding: 4px 2px 6px; }
+.cabinet-head .ch-title { font-family: var(--serif); font-size: 20px; font-weight: 700; }
+.cabinet-head .ch-sub { font-size: 12px; color: var(--gold-soft); margin-top: 2px; }
+
+.ticket {
+  background: var(--parchment);
+  border: 1px solid var(--line);
+  border-radius: 14px; padding: 14px; margin-bottom: 11px;
+  box-shadow: 0 8px 18px rgba(5,26,16,.2);
+}
+.ticket--unread { border-color: var(--gold); box-shadow: 0 8px 20px rgba(201,162,75,.3); }
+.ticket__head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+.ticket__status { font-size: 11px; font-weight: 800; padding: 3px 9px; border-radius: 999px; }
+.ticket__status.is-answered { color: #16633f; background: #d8efdf; border: 1px solid #aedcbd; }
+.ticket__status.is-pending { color: #8a6a12; background: #f6eccf; border: 1px solid #e6cf94; }
+.ticket__date { font-size: 11px; color: var(--ink-dim); }
+.ticket__new { font-size: 10px; font-weight: 800; color: #fff; background: #E23B3B; padding: 2px 7px; border-radius: 999px; margin-left: 6px; }
+.ticket__q { font-size: 13.5px; color: var(--ink); line-height: 1.45; font-weight: 600; }
+.ticket__a { margin-top: 10px; border-top: 1px dashed var(--line); padding-top: 10px; }
+.ticket__a-label { display: flex; align-items: center; gap: 8px; font-size: 11.5px; font-weight: 800; color: var(--green-700); margin-bottom: 5px; }
+.ticket__a-label img { width: 26px; height: 26px; border-radius: 50%; background: #eef4ef; padding: 2px; border: 1px solid var(--line); }
+.ticket__a-text { font-size: 13px; line-height: 1.6; color: var(--ink); }
+.ticket__wait { margin-top: 10px; font-size: 12px; color: var(--ink-dim); font-style: italic; }
+
+.cabinet-empty { text-align: center; color: var(--on-dark-dim); padding: 30px 16px; }
+.cabinet-empty img { width: 96px; height: 96px; opacity: .9; margin-bottom: 10px; }
+.cabinet-empty .ce-title { color: #fff; font-family: var(--serif); font-size: 17px; margin-bottom: 6px; }

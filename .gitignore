@@ -1,0 +1,11 @@
+# Локальное окружение Claude Code
+.claude/
+
+# OS / редактор
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Node (на будущее)
+node_modules/
+npm-debug.log*

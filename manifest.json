@@ -1,0 +1,27 @@
+{
+  "name": "ЦПСО EdPalm — Юридическая поддержка",
+  "short_name": "EdPalm Юрист",
+  "description": "Юридическая поддержка выпускников на семейном обучении: ответы по ОГЭ/ЕГЭ, аттестату и прикреплению к школе + вопрос юристу.",
+  "lang": "ru",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0E5A3C",
+  "theme_color": "#0E5A3C",
+  "categories": ["education", "legal"],
+  "icons": [
+    {
+      "src": "assets/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

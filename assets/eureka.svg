@@ -1,0 +1,63 @@
+<svg width="260" height="360" viewBox="0 0 260 360" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="suit" x1="60" y1="120" x2="200" y2="340" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5FCF4E"/>
+      <stop offset="1" stop-color="#1F8A47"/>
+    </linearGradient>
+    <linearGradient id="hair" x1="70" y1="30" x2="190" y2="150" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#C98A4B"/>
+      <stop offset="1" stop-color="#9C6126"/>
+    </linearGradient>
+    <radialGradient id="hexglow" cx="0.5" cy="0.5" r="0.5">
+      <stop stop-color="#D6FFB0"/>
+      <stop offset="1" stop-color="#3FBE63"/>
+    </radialGradient>
+    <filter id="hg" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="5" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Волосы сзади -->
+  <path d="M70 90 C55 150 60 210 90 240 L100 150 Z" fill="url(#hair)"/>
+  <path d="M190 90 C205 150 200 210 170 240 L160 150 Z" fill="url(#hair)"/>
+
+  <!-- Туловище / костюм -->
+  <path d="M95 175 C95 160 165 160 165 175 L180 300 C180 335 80 335 80 300 Z" fill="url(#suit)"/>
+  <!-- Светящиеся линии костюма -->
+  <path d="M130 180 L130 300" stroke="#BFF59C" stroke-width="2.5" opacity="0.8"/>
+  <path d="M104 200 C118 215 142 215 156 200" stroke="#BFF59C" stroke-width="2" fill="none" opacity="0.7"/>
+
+  <!-- Руки -->
+  <path d="M98 185 C70 200 62 250 70 290 L86 286 C82 250 88 215 110 205 Z" fill="url(#suit)"/>
+  <path d="M162 185 C190 200 198 250 190 290 L174 286 C178 250 172 215 150 205 Z" fill="url(#suit)"/>
+
+  <!-- Гексагон на груди -->
+  <g filter="url(#hg)">
+    <path d="M130 205 L146 214 L146 233 L130 242 L114 233 L114 214 Z" fill="url(#hexglow)" stroke="#EAFFD6" stroke-width="2"/>
+  </g>
+
+  <!-- Шея -->
+  <rect x="120" y="150" width="20" height="28" rx="8" fill="#F3CBA0"/>
+
+  <!-- Голова -->
+  <ellipse cx="130" cy="120" rx="46" ry="50" fill="#F8D6AE"/>
+  <!-- Волосы сверху -->
+  <path d="M84 118 C80 60 180 60 176 118 C176 96 168 80 150 74 C160 92 150 104 130 104 C110 104 100 92 110 74 C92 80 84 96 84 118 Z" fill="url(#hair)"/>
+  <path d="M84 118 C82 150 92 175 100 185 C92 165 92 140 96 120 Z" fill="url(#hair)"/>
+  <path d="M176 118 C178 150 168 175 160 185 C168 165 168 140 164 120 Z" fill="url(#hair)"/>
+
+  <!-- Глаза -->
+  <ellipse cx="113" cy="120" rx="6" ry="8" fill="#2E7D32"/>
+  <ellipse cx="147" cy="120" rx="6" ry="8" fill="#2E7D32"/>
+  <circle cx="115" cy="117" r="2" fill="#fff"/>
+  <circle cx="149" cy="117" r="2" fill="#fff"/>
+  <!-- Брови -->
+  <path d="M104 108 q9 -6 18 0" stroke="#7A4B20" stroke-width="2.5" fill="none"/>
+  <path d="M138 108 q9 -6 18 0" stroke="#7A4B20" stroke-width="2.5" fill="none"/>
+  <!-- Улыбка -->
+  <path d="M118 142 q12 12 24 0" stroke="#C46A52" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <!-- Румянец -->
+  <circle cx="104" cy="134" r="6" fill="#F5A98C" opacity="0.5"/>
+  <circle cx="156" cy="134" r="6" fill="#F5A98C" opacity="0.5"/>
+</svg>

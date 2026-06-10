@@ -1,0 +1,56 @@
+<svg width="220" height="240" viewBox="0 0 220 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="fur" x1="40" y1="40" x2="180" y2="220" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3A3A3A"/>
+      <stop offset="1" stop-color="#111111"/>
+    </linearGradient>
+    <radialGradient id="tag" cx="0.5" cy="0.5" r="0.5">
+      <stop stop-color="#D6FFB0"/>
+      <stop offset="1" stop-color="#3FBE63"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Хвост -->
+  <path d="M168 180 C200 175 205 140 185 150 C195 165 175 178 162 178 Z" fill="url(#fur)"/>
+  <path d="M188 150 C200 145 204 135 195 138 Z" fill="#F2F2F2"/>
+
+  <!-- Тело сидя -->
+  <path d="M70 130 C70 100 150 100 150 135 C160 170 165 205 130 215 C95 222 70 205 66 180 Z" fill="url(#fur)"/>
+  <!-- Белая грудь -->
+  <path d="M95 150 C95 130 125 130 125 150 C130 180 122 205 110 207 C96 205 92 180 95 150 Z" fill="#F4F4F4"/>
+
+  <!-- Передние лапы -->
+  <rect x="92" y="190" width="16" height="40" rx="8" fill="url(#fur)"/>
+  <rect x="116" y="190" width="16" height="40" rx="8" fill="url(#fur)"/>
+  <ellipse cx="100" cy="230" rx="11" ry="7" fill="#F4F4F4"/>
+  <ellipse cx="124" cy="230" rx="11" ry="7" fill="#F4F4F4"/>
+
+  <!-- Шея/ошейник -->
+  <path d="M92 120 q28 18 56 0 l-4 16 q-24 14 -48 0 Z" fill="#3F7BD6"/>
+  <!-- Жетон-гексагон -->
+  <path d="M120 138 L131 144 L131 157 L120 163 L109 157 L109 144 Z" fill="url(#tag)" stroke="#EAFFD6" stroke-width="1.5"/>
+
+  <!-- Голова -->
+  <ellipse cx="118" cy="92" rx="40" ry="38" fill="url(#fur)"/>
+  <!-- Белая проточина -->
+  <path d="M118 58 C108 75 108 110 118 124 C128 110 128 75 118 58 Z" fill="#F4F4F4"/>
+  <!-- Уши -->
+  <path d="M84 64 C78 40 96 44 100 66 Z" fill="url(#fur)"/>
+  <path d="M152 64 C158 40 140 44 136 66 Z" fill="url(#fur)"/>
+
+  <!-- Морда белая нижняя -->
+  <ellipse cx="118" cy="108" rx="22" ry="18" fill="#F4F4F4"/>
+  <!-- Нос -->
+  <ellipse cx="118" cy="100" rx="7" ry="5" fill="#1A1A1A"/>
+  <!-- Рот / язык -->
+  <path d="M118 105 L118 113" stroke="#1A1A1A" stroke-width="2"/>
+  <path d="M112 113 q6 10 12 0 q-2 12 -12 6 Z" fill="#E8736B"/>
+
+  <!-- Глаза -->
+  <circle cx="103" cy="88" r="7" fill="#fff"/>
+  <circle cx="133" cy="88" r="7" fill="#fff"/>
+  <circle cx="104" cy="89" r="4.5" fill="#5A3A1E"/>
+  <circle cx="134" cy="89" r="4.5" fill="#5A3A1E"/>
+  <circle cx="105" cy="87" r="1.6" fill="#fff"/>
+  <circle cx="135" cy="87" r="1.6" fill="#fff"/>
+</svg>
