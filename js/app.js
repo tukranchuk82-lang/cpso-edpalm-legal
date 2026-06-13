@@ -1101,6 +1101,11 @@
   // iOS Safari не поддерживает авто-установку — показываем кнопку с инструкцией
   if (isIOS() && !isStandalone()) document.body.classList.add('ios-install');
 
+  // [ДЕМО] Показываем кнопку «Установить» всегда (чтобы показать клиенту, как
+  // скачивается). Если браузер не прислал beforeinstallprompt — клик покажет
+  // инструкцию/подсказку. Убрать эту строку, чтобы вернуть штатное поведение.
+  if (!isStandalone()) document.body.classList.add('can-install');
+
   // Клик по любой кнопке «Установить» (кнопки рендерятся внутри экранов)
   document.addEventListener('click', async (e) => {
     const btn = e.target.closest('[data-action="install"]');

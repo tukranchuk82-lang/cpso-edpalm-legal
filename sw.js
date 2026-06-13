@@ -4,7 +4,7 @@
  *  и чтобы оно открывалось офлайн. Кэширует основные файлы.
  * ========================================================================== */
 
-const CACHE = 'edpalm-legal-v8';
+const CACHE = 'edpalm-legal-v9';
 const ASSETS = [
   './',
   './index.html',
@@ -14,6 +14,8 @@ const ASSETS = [
   './manifest.json',
   './assets/emblem.svg',
   './assets/app-icon.svg',
+  './assets/app-icon-192.png',
+  './assets/app-icon-512.png',
   './assets/denied.svg',
   './assets/eureka.svg',
   './assets/owl.svg',
